@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  
+</head>
+
+<body>
+    <header>
+        <nav>
+         
+           <ul>
+               <li><a href="index.html">Home</a></li>
+               <li><a href="about.html">About</a></li>
+               <li><a href="contact.html">Form</a></li>
+              
+         
+          <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+          <link rel="stylesheet" href="style.css">
+          
+          
+           </ul>
+         
+       </nav> 
+      </header>
+      
+      <img src="ad.jpg" class="d-block w-100">
+
+
+
+
+
+    <div id="success" class="alert alert-success alert-dismissible fade" role="alert">
+        <strong>Success!</strong> Your travel request has been successfully submitted
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div id="failure" class="alert alert-danger alert-dismissible fade" role="alert">
+            <strong>Error!</strong> Your travel request has not been sent due to errors
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    <div class="container">
+        <h1>Developer Admission Desk</h1>
+        <form>
+            <div class="form-group">
+                <label for="name">Username</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your username">
+                <small id="namevalid" class="form-text text-muted invalid-feedback">
+                        Your username must be 2-10 characters long and should not start with a number
+                      </small>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="text" class="form-control" id="email" placeholder="Enter your email">
+                <small id="emailvalid" class="form-text text-muted invalid-feedback">
+                        Your email must be a valid email
+                      </small>
+            </div>
+            <div class="form-group">
+                <label for="car">Select class in which you want study</label>
+                <select class="form-control" id="car">
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="address">Enter your address</label>
+                <textarea class="form-control" name="address" id="address" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="address">Enter your phone number</label>
+                <input class="form-control" name="phone" id="phone" rows="3">
+                <small id="emailvalid" class="form-text text-muted invalid-feedback">
+                        Your phone number must be 10 digit long
+                      </small>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Any other message...</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button id="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+       
+</body>
+<script>
+const name = document.getElementById('name');
+const email = document.getElementById('email');
+const phone = document.getElementById('phone');
+let validEmail = false;
+let validPhone = false;
+let validUser = false;
+$('#failure').hide();
+$('#success').hide();
+name.addEventListener('blur', ()=>{
+    console.log("name is blurred");
+    
+    let regex = /^[a-zA-Z]([0-9a-zA-Z]){2,10}$/;
+    let str = name.value;
+    console.log(regex, str);
+    if(regex.test(str)){
+        console.log('Your name is valid');
+        name.classList.remove('is-invalid');
+        validUser = true;
+    }
+    else{
+        console.log('Your name is not valid');
+        name.classList.add('is-invalid');
+        validUser = false;
+        
+    }
+})
+
+email.addEventListener('blur', ()=>{
+    console.log("email is blurred");
+    let regex = /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
+    let str = email.value;
+    console.log(regex, str);
+    if(regex.test(str)){
+        console.log('Your email is valid');
+        email.classList.remove('is-invalid');
+        validEmail = true;
+    }
+    else{
+        console.log('Your email is not valid');
+        email.classList.add('is-invalid');
+        validEmail = false;
+    }
+})
+
+phone.addEventListener('blur', ()=>{
+    console.log("phone is blurred");
+    let regex = /^([0-9]){10}$/;
+    let str = phone.value;
+    console.log(regex, str);
+    if(regex.test(str)){
+        console.log('Your phone is valid');
+        phone.classList.remove('is-invalid');
+        validPhone = true;
+    }
+    else{
+        console.log('Your phone is not valid');
+        phone.classList.add('is-invalid');
+        validPhone = false;
+        
+    }
+})
+
+let submit = document.getElementById('submit');
+submit.addEventListener('click', (e)=>{
+    e.preventDefault();
+
+    console.log('You clicked on submit');
+    console.log(validEmail, validUser, validPhone);
+    if(validEmail && validUser && validPhone){
+        let failure = document.getElementById('failure');
+
+        console.log('Phone, email and user are valid. Submitting the form');
+        let success = document.getElementById('success');
+        success.classList.add('show');
+        $('#failure').hide();
+        $('#success').show();
+        
+    }
+    else{
+        console.log('One of Phone, email or user are not valid. Hence not submitting the form. Please correct the errors and try again');
+        let failure = document.getElementById('failure');
+        failure.classList.add('show');
+        $('#success').hide();
+        $('#failure').show();
+        }
+
+    
+    
+})
+
+</script>
+</html>
